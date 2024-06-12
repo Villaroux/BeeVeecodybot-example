@@ -30,6 +30,7 @@ class InitializeCodyFight extends Command
         $IsGameFinished = false;
         $int = 0;
 
+        $this->info(CodyFighter::get()->pluck('key'));
 
         $key = $this->ask("How many CodyKeys are you using?[use SPACE between keys]");
 

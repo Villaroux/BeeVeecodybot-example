@@ -2,6 +2,8 @@
 
 namespace App\Traits\Models;
 
+use Illuminate\Support\Arr;
+
 trait HasCodyFighterOptions
 {
     protected string $friend;
@@ -55,5 +57,21 @@ trait HasCodyFighterOptions
         $this->friend = $friend;
 
         return $this;
+    }
+
+    public function GetOptionsArray(): array
+    {
+        $options = collect([
+            'friend' => $this->friend,
+            'skill' => $this->skill,
+            'x' => $this->x,
+            'y' => $this->y,
+        ]);
+
+        $filteredOptions = $options->filter(function ($value, $key) {
+            return $value != null;
+        });
+
+        return $filteredOptions->toArray();
     }
 }

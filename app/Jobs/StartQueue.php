@@ -29,20 +29,42 @@ class StartQueue implements ShouldQueue
     public function handle(): void
     {
         //While GamesToPlay > GamesPlayed Continue to play games (Queue,Game)
-        $gamesPlayed = 0;
+        /* $gamesPlayed = 0;
 
         $IsQueued = false;
 
         while ($gamesPlayed < $this->gamesToPlay)
         {
+            //If you haven't queued the start queueing
             if (!$IsQueued) {
-                CodyFight::Init($this->codyFighter);
+                $response = CodyFight::Init($this->codyFighter);
+                if ($response->IsQueued()) $IsQueued = true;
+                continue;
             }
-        }
-        //Start Queueing
 
-        //Continuously check state
+            //Continuously check state
+            $response = CodyFight::CheckState($this->codyFighter);
 
-            //
+            //If a game hasn't begun and we are not queued then queue up
+            if (!$response->IsGameOnGoing() || $IsQueued) {
+               $IsQueued = true;
+
+               return;
+            }
+
+             $IsQueued = false;
+
+            //Is it my turn?
+            if ($response->IsMyTurn()) {
+                Context::TakeAction($response);
+            }
+
+        } */
+
+        $response = CodyFight::Fake();
+
+        $going = $response->IsMyTurn();
+
+        dd($going);
     }
 }

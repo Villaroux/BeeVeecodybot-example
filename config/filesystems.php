@@ -36,6 +36,13 @@ return [
             'throw' => false,
         ],
 
+        'states' => [
+            'driver' => 'local',
+            'root' => storage_path('app/states'),
+            'throw' => false,
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
