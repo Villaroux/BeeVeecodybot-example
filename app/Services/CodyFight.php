@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Collections\CodyFightResponse;
+use App\Responses\CodyFightResponse;
 use App\Models\CodyFighter;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
@@ -90,19 +90,16 @@ class CodyFight
     {
         return CodyFightResponse::make(
             json_decode(
-                Storage::disk('states')
-                ->get('GameStarted.json')
+                associative: true,
+                json: Storage::disk('states')
+                ->get('example.json')
             )
-        )->dot();
+        );
     }
 
-    public static function GetSanitizedResponse($response)
+    public static function GetSanitizedResponse(Response $response)
     {
-        //Sanitize response and turn it into a resource
-        //@var CodyFightResponse $singletonResponse
-        $singletonResponse = App::make(CodyFightResponse::class);
-
-        $singletonResponse->Update($response->json());
+        $singletonResponse = CodyFightResponse::make($response->json());
 
         return $singletonResponse;
     }

@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Traits\Jobs\HasCodyFighter;
 use App\Models\CodyFighter;
-use App\Services\Codyfight;
+use App\Services\CodyFight;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -62,6 +62,7 @@ class StartQueue implements ShouldQueue
         } */
 
         $response = CodyFight::Fake();
+        dd($response);
 
         $going = $response->IsMyTurn();
 

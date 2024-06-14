@@ -2,7 +2,7 @@
 
 namespace App\Strategies;
 
-use App\Collections\CodyFightResponse;
+use App\Responses\CodyFightResponse;
 use App\Interfaces\IStrategy;
 
 abstract class ActionStrategy implements IStrategy

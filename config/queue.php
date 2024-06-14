@@ -42,6 +42,14 @@ return [
             'after_commit' => false,
         ],
 
+        'codyfighters' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'codyfights',
+            'retry_after' => 90,
+            'after_commit' => false, 
+        ],
+
         'beanstalkd' => [
             'driver' => 'beanstalkd',
             'host' => 'localhost',

@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CodyFightResponse extends Collection
 {
-    public function Update()
-    {
-
-    }
     public function IsMyTurn(): bool
     {
         return $this['gameState']->robots->bearer->is_player_turn;

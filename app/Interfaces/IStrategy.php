@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-use App\Collections\CodyFightResponse;
+use App\Responses\CodyFightResponse;
 
 interface IStrategy
 {
