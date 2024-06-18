@@ -99,7 +99,12 @@ class CodyFight
 
     public static function GetSanitizedResponse(Response $response)
     {
-        $singletonResponse = CodyFightResponse::make($response->json());
+        $singletonResponse = CodyFightResponse::make(
+            json_decode(
+                $response->json(),
+                associative:true
+            )
+        );
 
         return $singletonResponse;
     }

@@ -2,6 +2,10 @@
 
 namespace App\Responses;
 
+use App\CodyFight\GameState;
+use App\CodyFight\Map;
+use App\Codyfight\PlayerEntities;
+use App\CodyFight\Verdict;
 use App\Enum\GameStateEnum;
 use App\Enum\MapTileEnum;
 use App\Structs\Vector2;
@@ -9,9 +13,22 @@ use Illuminate\Http\Client\Response;
 
 class CodyFightResponse extends Response
 {
-    public static function make(string $json): self
+    public GameState $gameState;
+    public Map $map;
+    public Verdict $verdict;
+    public PlayerEntities $players;
+
+    public static function make(array $decodedJSON): self
     {
-        $codyResponse = new CodyFightResponse($json);
+        $codyResponse = new CodyFightResponse($decodedJSON);
+        
+        $codyResponse->gameState = new GameState($decodedJSON['gameState']['state']);
+
+        $codyResponse->verdict = new Verdict($decodedJSON['gameState']['verdict']);
+
+        $codyResponse->players = new PlayerEntities($decodedJSON['gameState']['players'] ?? $decodedJSON['gameState']['robots']);
+
+        $codyResponse->map = new Map($decodedJSON['gameState']['map']);
         
         return $codyResponse;
     }

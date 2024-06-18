@@ -3,7 +3,7 @@
 namespace App\Strategies;
 
 use App\Abstracts\Context;
-use App\Collections\CodyFightResponse;
+use App\Responses\CodyFightResponse;
 use App\Interfaces\IStrategy;
 
 class ActionContext extends Context

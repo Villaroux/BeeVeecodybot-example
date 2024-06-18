@@ -15,6 +15,7 @@ class Random extends ActionStrategy
 
     public function evaluate(CodyFightResponse $response)
     {
+        
         return;
     }
 }

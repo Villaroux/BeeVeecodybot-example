@@ -3,7 +3,7 @@
 namespace App\Strategies;
 
 use App\Abstracts\Context;
-use App\Collections\CodyFightResponse;
+use App\Responses\CodyFightResponse;
 
 class MovementContext extends Context
 {
@@ -23,6 +23,7 @@ class MovementContext extends Context
          *
          * $this->strategy = new SkipStrategy();
          */
+        //$response->map->mapTiles->getTiles();
         return false;
     }
 }
