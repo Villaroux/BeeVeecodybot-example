@@ -9,10 +9,13 @@ use App\CodyFight\Verdict;
 use App\Enum\GameStateEnum;
 use App\Enum\MapTileEnum;
 use App\Structs\Vector2;
+use App\Traits\Jobs\HasCodyFighter;
 use Illuminate\Http\Client\Response;
 
 class CodyFightResponse extends Response
 {
+    use HasCodyFighter;
+
     public GameState $gameState;
     public Map $map;
     public Verdict $verdict;

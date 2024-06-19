@@ -2,7 +2,7 @@
 
 namespace App\Strategies;
 
-use App\Collections\CodyFightResponse;
+use App\Responses\CodyFightResponse;
 use Illuminate\Support\Facades\App;
 
 class Context

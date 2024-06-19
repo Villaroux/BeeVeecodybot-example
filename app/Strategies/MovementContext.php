@@ -4,6 +4,7 @@ namespace App\Strategies;
 
 use App\Abstracts\Context;
 use App\Responses\CodyFightResponse;
+use App\Strategies\Actions\ExitStrategy;
 
 class MovementContext extends Context
 {
@@ -24,6 +25,12 @@ class MovementContext extends Context
          * $this->strategy = new SkipStrategy();
          */
         //$response->map->mapTiles->getTiles();
+
+        if ($response->map->HasExitSpawned()) {
+            //Move towards Exit
+            $this->strategy = new ExitStrategy($response);
+            return true;
+        }
         return false;
     }
 }

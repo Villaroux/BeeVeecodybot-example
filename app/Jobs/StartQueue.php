@@ -62,6 +62,7 @@ class StartQueue implements ShouldQueue
         } */
 
         $response = CodyFight::Fake();
+        $response->codyFighter = $this->codyFighter;
         dd($response);
 
         $going = $response->IsMyTurn();

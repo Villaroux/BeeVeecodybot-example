@@ -26,8 +26,4 @@ enum MapTileEnum: string
     case LEFT_SLIDER = 'Left Side Directional Slider';
     case RIGHT_SLIDER = 'Right Side Directional Slider';
 
-    public static function something()
-    {
-
-    }
 }
