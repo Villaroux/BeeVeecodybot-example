@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 
 class MapTiles extends Collection
 {
+    //TODO:: Think of MapTiles as custom collection functionality to retrieve data
+    
     public function getTiles(MapTileEnum $tileEnum): Collection
     { 
         return $this->where('name', $tileEnum->value);

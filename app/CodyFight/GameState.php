@@ -27,12 +27,6 @@ class GameState
 
     public function IsGameOnGoing()
     {
-        
-    }
-
-    public function dd()
-    {
-        dump($this);
-        die;
+        //TODO:: Finish checking if game is running and return bool
     }
 }

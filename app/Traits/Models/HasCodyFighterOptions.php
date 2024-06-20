@@ -59,6 +59,11 @@ trait HasCodyFighterOptions
         return $this;
     }
 
+    /**
+     * Options array contains everything used in requests made.
+     *
+     * @return array
+     */
     public function GetOptionsArray(): array
     {
         $options = collect([

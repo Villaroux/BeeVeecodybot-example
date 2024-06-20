@@ -21,6 +21,12 @@ class CodyFightResponse extends Response
     public Verdict $verdict;
     public PlayerEntities $players;
 
+    /**
+     * Map into custom response
+     *
+     * @param array $decodedJSON
+     * @return self
+     */
     public static function make(array $decodedJSON): self
     {
         $codyResponse = new CodyFightResponse($decodedJSON);
@@ -36,16 +42,19 @@ class CodyFightResponse extends Response
         return $codyResponse;
     }
 
+    //TODO:: Move to GameState
     public function IsMyTurn(): bool
     {
         return $this['gameState']->robots->bearer->is_player_turn;
     }
 
+    //TODO:: Move to Player
     public function CanPerformActions()
     {
         //Get the lowest action cost possible
     }
 
+    //TODO:: Move to GameState
     public function IsGameOnGoing()
     {
         return match($this['gameState']->verdict->context)
@@ -53,15 +62,5 @@ class CodyFightResponse extends Response
             GameStateEnum::INPROGRESS->value => true,
             default => false,
         };
-    }
-
-    public function GetPosition(Vector2 $mapTilePosition)
-    {
-        
-    }
-
-    public function GetMyPosition(): Vector2 
-    {
-        return new Vector2($this['x'], $this['y']);
     }
 }

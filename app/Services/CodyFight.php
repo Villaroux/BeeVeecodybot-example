@@ -9,10 +9,18 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
+
 class CodyFight
 {
+    /**
+     * Start Queuing for a match
+     *
+     * @param CodyFighter $codyFighter
+     * @return CodyFightResponse
+     */
     public static function Init(CodyFighter $codyFighter): CodyFightResponse
     {
+        //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
             ->post(
                 route(
@@ -26,8 +34,15 @@ class CodyFight
         }
     }
 
+    /**
+     * Check state of a codyfighter
+     *
+     * @param CodyFighter $codyFighter
+     * @return void
+     */
     public static function CheckState(CodyFighter $codyFighter)
     {
+        //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
             ->get(
                 route(
@@ -41,8 +56,15 @@ class CodyFight
             }
     }
 
+    /**
+     * Use a skill
+     *
+     * @param CodyFighter $codyFighter
+     * @return void
+     */
     public static function UseSkill(CodyFighter $codyFighter)
     {
+        //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
             ->patch(
                 route(
@@ -56,8 +78,15 @@ class CodyFight
             }
     }
 
+    /**
+     * Move a codyfighter
+     *
+     * @param CodyFighter $codyFighter
+     * @return void
+     */
     public static function MoveCodyFighter(CodyFighter $codyFighter)
     {
+        //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
             ->put(
                 route(
@@ -71,8 +100,15 @@ class CodyFight
             }
     }
 
+    /**
+     * Surrender
+     *
+     * @param CodyFighter $codyFighter
+     * @return void
+     */
     public static function Surrender(CodyFighter $codyFighter)
     {
+        //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
             ->delete(
                 route(
@@ -86,6 +122,11 @@ class CodyFight
             }
     }
 
+    /**
+     * Example for testing purposes
+     *
+     * @return CodyFightResponse
+     */
     public static function Fake(): CodyFightResponse
     {
         return CodyFightResponse::make(
@@ -97,8 +138,15 @@ class CodyFight
         );
     }
 
+    /**
+     * Transforms response to custom response
+     *
+     * @param Response $response
+     * @return void
+     */
     public static function GetSanitizedResponse(Response $response)
     {
+        //TODO:: Probably remove since we will be running multiple jobs that will not enable to do this
         $singletonResponse = CodyFightResponse::make(
             json_decode(
                 $response->json(),

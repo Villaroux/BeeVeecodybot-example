@@ -25,4 +25,6 @@ class Map
     {
         return $this->mapTiles->getTile(MapTileEnum::EXIT);
     }
+
+    //TODO::Think of using Map as a repository to query the collection
 }

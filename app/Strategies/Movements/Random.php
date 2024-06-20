@@ -47,7 +47,6 @@ class Random extends ActionStrategy
         }
 
         //Move towards a space
-        $this->response->codyFighter;
 
         //CodyFight::MoveCodyFighter()
     }

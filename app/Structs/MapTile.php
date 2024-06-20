@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 
 class MapTile
 {   
+    //TODO:: Revisit all walkable types
     protected $walkableTileTypes = [
         MapTileEnum::EXIT,
         MapTileEnum::BLANK,
