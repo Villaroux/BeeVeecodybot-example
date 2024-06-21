@@ -144,13 +144,13 @@ class CodyFight
      * @param Response $response
      * @return void
      */
-    public static function GetSanitizedResponse(Response $response)
+    public static function GetSanitizedResponse(Response $response): CodyFightResponse
     {
         //TODO:: Probably remove since we will be running multiple jobs that will not enable to do this
         $singletonResponse = CodyFightResponse::make(
             json_decode(
-                $response->json(),
-                associative:true
+                json: $response->json(),
+                associative: true
             )
         );
 
