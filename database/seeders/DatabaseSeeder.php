@@ -21,17 +21,5 @@ class DatabaseSeeder extends Seeder
         /* $this->run([
             CodyFighterSeeder::class,
         ]); */
-        \App\Models\CodyFighter::create([
-            'key' => "a5e0e6-f8a66d-92955f-5fbc6f",
-            'mode' => 0,
-        ]);
-        \App\Models\CodyFighter::create([
-            'key' => "a5e0e6-f8a66d-92955f-5fbc6f",
-            'mode' => 1,
-        ]);
-        \App\Models\CodyFighter::create([
-            'key' => "a5e0e6-f8a66d-92955f-5fbc6f",
-            'mode' => 2,
-        ]);
     }
 }
