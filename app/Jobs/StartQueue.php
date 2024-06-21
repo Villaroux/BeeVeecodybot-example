@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Traits\Jobs\HasCodyFighter;
-use App\Models\CodyFighter;
+use App\CodyFight\Entities\CodyFighter;
 use App\Services\CodyFight;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,10 +31,9 @@ class StartQueue implements ShouldQueue
         //TODO:: Finish job rotation to checkstate and track number of games played
 
         $response = CodyFight::Fake();
-        $response->codyFighter = $this->codyFighter;
-        dd($response);
+        $response->SetCodyfighter($this->codyFighter);
 
-        $going = $response->IsMyTurn();
+        $going = $response->gameState->IsGameOnGoing();
 
         dd($going);
     }

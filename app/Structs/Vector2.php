@@ -5,7 +5,12 @@ namespace App\Structs;
 class Vector2
 {
     public function __construct(public int $x, public int $y){
-        
+
+    }
+
+    public static function Zero(): self
+    {
+        return new self(0,0);
     }
 
     public function HasNegativeValues()
@@ -22,7 +27,7 @@ class Vector2
          *  1,2  |  2,2   |  3,2
          * ______|________|________
          *  1,1  |  2,1   |  3,1
-         * 
+         *
          */
 
         /**
@@ -37,7 +42,7 @@ class Vector2
          *  o    |  o     |  o
          * ______|________|________
          *  x    |  o     |  x
-         * 
+         *
          */
         return ($this->x != $position->x && $this->y != $position->y);
     }

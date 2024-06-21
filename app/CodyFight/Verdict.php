@@ -4,9 +4,9 @@ namespace App\CodyFight;
 
 class Verdict
 {
-    public int $context;
-    public string $winner;
-    public string $statement;
+    public string $context;
+    public ?string $winner;
+    public ?string $statement;
 
     public function __construct(array $gameState)
     {
@@ -17,7 +17,7 @@ class Verdict
 
     public function IsGameOnGoing()
     {
-        
+
     }
 
     public function dd()

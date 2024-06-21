@@ -11,7 +11,12 @@ class Player
 
     public function __construct(array $data)
     {
-        $position = new Vector2($data['position']['x'], $data['position']['y']);
+        if (empty($data['position'])) {
+            $this->position = Vector2::Zero();
+            return;
+        }
+
+        $this->position = new Vector2($data['position']['x'], $data['position']['y']);
     }
 
     public function GetPosition(): Vector2
@@ -20,7 +25,7 @@ class Player
     }
 
     public function IsPositionWalkable(MapTile $possibleTile): bool
-    {   
+    {
 
         //If it is the same position then its skippable
         //This action will not be allowed in this method
@@ -29,6 +34,6 @@ class Player
         //Example P(2,2), pos(2,1) => true
         //Example P(2,2), pos(3,3) => false, because this is diagonal to the player
         return ! ($this->position->IsDiagonal($possibleTile->position));
-        
+
     }
 }

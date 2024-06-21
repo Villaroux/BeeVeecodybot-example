@@ -30,7 +30,7 @@ class CodyFightResponse extends Response
     public static function make(array $decodedJSON): self
     {
         $codyResponse = new CodyFightResponse($decodedJSON);
-        
+
         $codyResponse->gameState = new GameState($decodedJSON['gameState']['state']);
 
         $codyResponse->verdict = new Verdict($decodedJSON['gameState']['verdict']);
@@ -38,7 +38,7 @@ class CodyFightResponse extends Response
         $codyResponse->players = new PlayerEntities($decodedJSON['gameState']['players'] ?? $decodedJSON['gameState']['robots']);
 
         $codyResponse->map = new Map($decodedJSON['gameState']['map']);
-        
+
         return $codyResponse;
     }
 
