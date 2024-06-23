@@ -2,6 +2,9 @@
 
 namespace App\Jobs;
 
+use App\CodyFight\Entities\CodyFighter;
+use App\Services\CodyFight;
+use App\Strategies\Context;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -15,7 +18,7 @@ class CheckState implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(public CodyFighter $codyFighter)
     {
         //
     }
@@ -25,7 +28,20 @@ class CheckState implements ShouldQueue
      */
     public function handle(): void
     {
-        //
-        echo "Checking State";
+        //Get CheckState
+        $response = CodyFight::CheckState($this->codyFighter);
+
+        if ($response->gameState->IsGameOnGoing()) {
+            //GameIsOnGoing
+            Context::TakeAction($response);
+        }
+
+        if ($response->gameState->HasGameEnded()) {
+            //Game Ended - Restart If
+            StartQueue::dispatch($this->codyFighter)->onQueue('codyfighters');
+        }
+
+        //Repeat job
+        CheckState::dispatch($this->codyFighter)->onQueue('codyfighters');
     }
 }

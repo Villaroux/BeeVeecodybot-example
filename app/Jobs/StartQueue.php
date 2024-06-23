@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Traits\Jobs\HasCodyFighter;
 use App\CodyFight\Entities\CodyFighter;
 use App\Services\CodyFight;
+use App\Strategies\Context;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -13,14 +14,13 @@ use Illuminate\Queue\SerializesModels;
 
 class StartQueue implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, HasCodyFighter;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(CodyFighter $codyFighter, protected int $gamesToPlay = 1)
+    public function __construct(public CodyFighter $codyFighter, protected int $gamesToPlay = 1)
     {
-        $this->codyFighter = $codyFighter;
     }
 
     /**
@@ -33,8 +33,8 @@ class StartQueue implements ShouldQueue
         $response = CodyFight::Fake();
         $response->SetCodyfighter($this->codyFighter);
 
-        $going = $response->gameState->IsGameOnGoing();
-
-        dd($going);
+        Context::TakeAction($response); //Temporary
+        //Dispatch CheckState Job
+        CheckState::dispatch($this->codyFighter)->onQueue('codyfighters');
     }
 }
