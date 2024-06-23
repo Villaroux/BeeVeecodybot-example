@@ -8,8 +8,10 @@ trait HasCodyFighter
 {
     protected CodyFighter $codyFighter;
 
-    public function SetCodyfighter(CodyFighter $codyFighter)
+    public function SetCodyfighter(CodyFighter $codyFighter): self
     {
         $this->codyFighter = $codyFighter;
+
+        return $this;
     }
 }
