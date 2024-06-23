@@ -27,8 +27,12 @@ class GameState
 
     public function IsGameOnGoing()
     {
-        dd($this->status);
+        return $this->status != 2;
+        //TODO:: Finish checking if game is running and return bool
+    }
 
+    public function HasGameEnded()
+    {
         return $this->status != 2;
         //TODO:: Finish checking if game is running and return bool
     }

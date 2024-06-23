@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Responses\CodyFightResponse;
-use App\Models\CodyFighter;
+use App\CodyFight\Entities\CodyFighter;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\App;
@@ -29,18 +29,16 @@ class CodyFight
                 )
             );
 
-        if ($response->ok()) {
-            return CodyFight::GetSanitizedResponse($response);
-        }
+        return CodyFight::GetSanitizedResponse($response, $codyFighter);
     }
 
     /**
      * Check state of a codyfighter
      *
      * @param CodyFighter $codyFighter
-     * @return void
+     * @return CodyFightResponse
      */
-    public static function CheckState(CodyFighter $codyFighter)
+    public static function CheckState(CodyFighter $codyFighter): CodyFightResponse
     {
         //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
@@ -51,9 +49,8 @@ class CodyFight
                 )
             );
 
-            if ($response->ok()) {
-                return CodyFight::GetSanitizedResponse($response);
-            }
+
+        return CodyFight::GetSanitizedResponse($response, $codyFighter);
     }
 
     /**
@@ -62,7 +59,7 @@ class CodyFight
      * @param CodyFighter $codyFighter
      * @return void
      */
-    public static function UseSkill(CodyFighter $codyFighter)
+    public static function UseSkill(CodyFighter $codyFighter): CodyFightResponse
     {
         //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
@@ -74,7 +71,7 @@ class CodyFight
             );
 
             if ($response->ok()) {
-                return CodyFight::GetSanitizedResponse($response);
+                return CodyFight::GetSanitizedResponse($response, $codyFighter);
             }
     }
 
@@ -84,7 +81,7 @@ class CodyFight
      * @param CodyFighter $codyFighter
      * @return void
      */
-    public static function MoveCodyFighter(CodyFighter $codyFighter)
+    public static function MoveCodyFighter(CodyFighter $codyFighter): CodyFightResponse
     {
         //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
@@ -96,7 +93,7 @@ class CodyFight
             );
 
             if ($response->ok()) {
-                return CodyFight::GetSanitizedResponse($response);
+                return CodyFight::GetSanitizedResponse($response, $codyFighter);
             }
     }
 
@@ -106,7 +103,7 @@ class CodyFight
      * @param CodyFighter $codyFighter
      * @return void
      */
-    public static function Surrender(CodyFighter $codyFighter)
+    public static function Surrender(CodyFighter $codyFighter): CodyFightResponse
     {
         //TODO::Use data in CodyFighterOptions
         $response = Http::acceptJson()
@@ -118,7 +115,7 @@ class CodyFight
             );
 
             if ($response->ok()) {
-                return CodyFight::GetSanitizedResponse($response);
+                return CodyFight::GetSanitizedResponse($response, $codyFighter);
             }
     }
 
@@ -142,18 +139,15 @@ class CodyFight
      * Transforms response to custom response
      *
      * @param Response $response
-     * @return void
+     * @return CodyFightResponse
      */
-    public static function GetSanitizedResponse(Response $response): CodyFightResponse
+    public static function GetSanitizedResponse(Response $response, CodyFighter $codyfighter): CodyFightResponse
     {
-        //TODO:: Probably remove since we will be running multiple jobs that will not enable to do this
-        $singletonResponse = CodyFightResponse::make(
+        return CodyFightResponse::make(
             json_decode(
                 json: $response->json(),
                 associative: true
             )
-        );
-
-        return $singletonResponse;
+        )->SetCodyfighter($codyfighter);
     }
 }

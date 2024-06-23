@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Codyfight;
+namespace App\CodyFight;
 
 class PlayerEntities
 {

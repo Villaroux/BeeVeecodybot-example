@@ -4,7 +4,7 @@ namespace App\Responses;
 
 use App\CodyFight\GameState;
 use App\CodyFight\Map;
-use App\Codyfight\PlayerEntities;
+use App\CodyFight\PlayerEntities;
 use App\CodyFight\Verdict;
 use App\Enum\GameStateEnum;
 use App\Enum\MapTileEnum;

@@ -14,10 +14,10 @@ class Context
     public function EvaluateAction(CodyFightResponse $response): void
     {
         //
-        if ($this->actionContext->evaluate($response)) {
+        /* if ($this->actionContext->evaluate($response)) {
             $this->actionContext->execute();
             return;
-        }
+        } */
 
         if ($this->movementContext->evaluate($response)) {
             $this->movementContext->execute();
@@ -25,12 +25,13 @@ class Context
         }
 
         //Do nothing and skip turn
+        //If no strategy was good
     }
 
     public static function TakeAction(CodyFightResponse $response)
     {
         $scopedContext = App::make(Context::class);
-
+        $scopedContext->movementContext = new MovementContext();
         $scopedContext->EvaluateAction($response);
     }
 }
