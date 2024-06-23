@@ -13,11 +13,14 @@ class Map
 
     public function __construct(array $mapArray)
     {
-        $this->mapTiles = new MapTiles($mapArray);
+        $mapTiles = new MapTiles($mapArray);
+
+        $this->mapTiles = $mapTiles->mapInto(MapTile::class);
     }
 
     public function HasExitSpawned(): bool
     {
+        dd($this->mapTiles->getTiles(MapTileEnum::EXIT));
         return $this->mapTiles->getTiles(MapTileEnum::EXIT)->count() > 0;
     }
 

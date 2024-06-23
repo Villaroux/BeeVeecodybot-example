@@ -6,7 +6,7 @@ use App\Enum\MapTileEnum;
 use Illuminate\Support\Arr;
 
 class MapTile
-{   
+{
     //TODO:: Revisit all walkable types
     protected $walkableTileTypes = [
         MapTileEnum::EXIT,
@@ -23,6 +23,7 @@ class MapTile
     ];
 
     public function __construct(public Vector2 $position, public MapTileEnum $type) {
+        //Change Constructor to be mapped from maptiles collection
     }
 
     public function IsWalkable()
