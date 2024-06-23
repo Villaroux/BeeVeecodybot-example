@@ -25,7 +25,7 @@ class MovementContext extends Context
          * $this->strategy = new SkipStrategy();
          */
         //$response->map->mapTiles->getTiles();
-
+        dd($response->map->HasExitSpawned());
         if ($response->map->HasExitSpawned()) {
             //Move towards Exit
             $this->strategy = new ExitStrategy($response);
