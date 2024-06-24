@@ -17,7 +17,7 @@ class CodyFightResponse extends Response
     use HasCodyFighter;
 
     public GameState $gameState;
-    public Map $map;
+    protected Map $map;
     public Verdict $verdict;
     public PlayerEntities $players;
 
@@ -62,5 +62,10 @@ class CodyFightResponse extends Response
             GameStateEnum::INPROGRESS->value => true,
             default => false,
         };
+    }
+
+    public function getMap()
+    {
+        return $this->map->mapTiles;
     }
 }

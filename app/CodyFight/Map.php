@@ -13,14 +13,25 @@ class Map
 
     public function __construct(array $mapArray)
     {
-        $mapTiles = new MapTiles($mapArray);
+        /* $mapTiles = new MapTiles($mapArray);
 
-        $this->mapTiles = $mapTiles->mapInto(MapTile::class);
+        $mapTiles->each(function (array $index, int $value) {
+            dd($index,$value);
+        }); */
+
+        //$this->mapTiles = $mapTiles->mapInto(MapTile::class);
+        $mapTileArray = [];
+
+        foreach ($mapArray as $rowIndex => $columnIndex) {
+            foreach ($columnIndex as $column => $mapTileData)
+            $mapTileArray[] = new MapTile($mapTileData);
+        }
+
+        $this->mapTiles = new MapTiles($mapTileArray);
     }
 
     public function HasExitSpawned(): bool
     {
-        dd($this->mapTiles->getTiles(MapTileEnum::EXIT));
         return $this->mapTiles->getTiles(MapTileEnum::EXIT)->count() > 0;
     }
 
