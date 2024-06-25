@@ -2,21 +2,26 @@
 
 namespace App\CodyFight;
 
+use App\CodyFight\Entities\Stats;
 use App\Structs\MapTile;
 use App\Structs\Vector2;
 
 class Player
 {
     protected Vector2 $position;
-
+    protected Stats $stats;
     public function __construct(array $data)
     {
+        $this->stats = Stats::makeFromData($data['stats']);
+
         if (empty($data['position'])) {
             $this->position = Vector2::Zero();
             return;
         }
 
         $this->position = new Vector2($data['position']['x'], $data['position']['y']);
+
+
     }
 
     public function GetPosition(): Vector2

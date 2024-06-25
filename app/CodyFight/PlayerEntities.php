@@ -8,7 +8,8 @@ class PlayerEntities
     public Player $opponent;
 
     public function __construct(array $players) {
-        $player = new Player($players['bearer']);
-        $player = new Player($players['opponent']);
+        $this->player = new Player($players['bearer']);
+        $this->opponent = new Player($players['opponent']);
+
     }
 }
