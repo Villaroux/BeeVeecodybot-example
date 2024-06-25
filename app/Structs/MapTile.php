@@ -27,4 +27,14 @@ class MapTile
     {
         return $this->type->IsWalkable();
     }
+
+    public function Distance(MapTile $maptile)
+    {
+        return abs(
+            (
+                ($this->position->x - $maptile->position->x)
+                + ($this->position->y - $maptile->position->y)
+            )
+        );
+    }
 }

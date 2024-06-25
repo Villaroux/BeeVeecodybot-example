@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Strategies\Actions;
+namespace App\Strategies\Movements;
 
 use App\Responses\CodyFightResponse;
 use App\Strategies\ActionStrategy;
@@ -18,19 +18,29 @@ class ExitStrategy extends ActionStrategy
 
     }
 
-    public function evaluate(CodyFightResponse $response): bool
+    public function viable(): bool
     {
-
         //Where is our player?
         $player = $this->response->players->player;
 
         $this->source = $player->GetPosition();
         //Where is our exit? When We are inside this strategy we assume that there is a way to get to the exit
-        $exit = $this->response->map->GetExitPosition();
+        $exit = $this->response->getMap()->GetExitTile();
         //Where Can I Walk?
-        $tilesAroundPlayer = $this->response->map->mapTiles->getTilesAroundPosition($player->GetPosition());
-        //What Tiles are available to walk near Exit?
-        $tilesAroundExit = $this->response->map->mapTiles->getTilesAroundPosition($exit->position);
+        $tilesAroundPlayer = $this->response->getMap()->getTilesAroundPosition($player->GetPosition());
+
+        foreach ($tilesAroundPlayer as $mapTile) {
+           /*  dd(
+                $player->IsPositionWalkable($mapTile),
+                $this->source,
+                $mapTile->position,
+                $exit->position,
+                $exit->Distance($mapTile),
+                $mapTile->IsWalkable()
+            ); */
+
+
+        }
         //What is the shortest route?
 
         //Move towards new tile

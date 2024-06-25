@@ -30,15 +30,6 @@ class Map
         $this->mapTiles = new MapTiles($mapTileArray);
     }
 
-    public function HasExitSpawned(): bool
-    {
-        return $this->mapTiles->getTiles(MapTileEnum::EXIT)->count() > 0;
-    }
-
-    public function GetExitPosition(): MapTile
-    {
-        return $this->mapTiles->getTile(MapTileEnum::EXIT);
-    }
 
     //TODO::Think of using Map as a repository to query the collection
 }

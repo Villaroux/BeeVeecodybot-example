@@ -40,4 +40,16 @@ class MapTiles extends Collection
 
         return $maptile;
     }
+
+    public function GetExitTile(): MapTile
+    {
+        return $this->getTile(MapTileEnum::EXIT);
+    }
+
+    public function HasExitSpawned(): bool
+    {
+        return $this->getTiles(MapTileEnum::EXIT)->count() > 0;
+    }
+
+
 }

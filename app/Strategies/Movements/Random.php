@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Strategies\Actions;
+namespace App\Strategies\Movements;
 
 use App\Responses\CodyFightResponse;
 use App\Services\CodyFight;
@@ -15,7 +15,7 @@ class Random extends ActionStrategy
     {
         $player = $this->response->players->player;
         //Where can I walk?
-        $tilesAroundPlayer = $this->response->map->mapTiles->getTilesAroundPosition($player->GetPosition());
+        $tilesAroundPlayer = $this->response->getMap()->getTilesAroundPosition($player->GetPosition());
 
         $validTiles = [];
 
@@ -23,7 +23,7 @@ class Random extends ActionStrategy
             //Check if this tile is either up|down|left|right of player since these are the only
             //possible movement options
             //Get possible tile
-            $mapTile = $this->response->map->mapTiles->getTileFromPosition(
+            $mapTile = $this->response->getMap()->getTileFromPosition(
                 new Vector2(
                     $tile['position']['x'],
                     $tile['position']['y']
@@ -51,7 +51,7 @@ class Random extends ActionStrategy
         //CodyFight::MoveCodyFighter()
     }
 
-    public function evaluate(CodyFightResponse $response)
+    public function viable()
     {
         return;
     }
